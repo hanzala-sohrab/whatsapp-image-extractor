@@ -23,13 +23,17 @@ Extract images sent from all the users in a Whatsapp group
         `You just received this ${message.type} from *${message.sender.name}* with id ${message.sender.id}, at ${message.timestamp}, in group *${message.chat.formattedTitle}* (id: ${message.chat.id})`
     );
     ```
-5. Run the TypeScript file
+5. Update line `35` with a valid URL in [client.ts](./client.ts) where the request must be sent
+    ```ts
+    post("Enter URL here", ...
+    ```
+6. Run the TypeScript file
     ```shell
     tsc client.ts
     ```
-6. Run the JavaScript file
+7. Run the JavaScript file
     ```shell
     node client.js
     ```
-7. Scan the QR-Code with your phone using Whatsapp to create a new session
+8. Scan the QR-Code with your phone using Whatsapp to create a new session
 
