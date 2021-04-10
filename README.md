@@ -23,7 +23,7 @@ Extract images sent from all the users in a Whatsapp group
     ```shell
     npm install -g typescript
     ```
-6. Update line `23` with your chatId of choice in [client.ts](./client.ts)
+6. Update line `23` with your chatId of choice in [client.ts](./https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/c600f9a20be3ba233ffccc2eee6d5f359ac1bed3/client.ts#L23)
     ```ts
     await client.sendImage(
         "919XXXXXXXXX@c.us",
@@ -32,7 +32,7 @@ Extract images sent from all the users in a Whatsapp group
         `You just received this ${message.type} from *${message.sender.name}* with id ${message.sender.id}, at ${message.timestamp}, in group *${message.chat.formattedTitle}* (id: ${message.chat.id})`
     );
     ```
-7. Update line `41` with a valid URL in [client.ts](./client.ts) where the request must be sent
+7. Update line `41` with a valid URL in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/c600f9a20be3ba233ffccc2eee6d5f359ac1bed3/client.ts#L41) where the request must be sent
     ```ts
     post("Enter URL here", ...
     ```
