@@ -6,7 +6,7 @@ const mime = require("mime-types");
 
 function start(client: Client) {
   client.onMessage(async (message) => {
-    if (message.mimetype) {
+    if (message.mimetype && !message.chatId.endsWith("@c.us")) {
       const filename = `${message.t}-${Math.floor(Math.random() * 1000)}.${mime.extension(message.mimetype)}`;
       const mediaData = await decryptMedia(message);
       const imageBase64 = `data:${message.mimetype};base64,${mediaData.toString(
@@ -25,7 +25,7 @@ function start(client: Client) {
         filename,
         `You just received this ${message.type} from *${message.sender.name}* with id ${message.sender.id}, at ${message.timestamp}, in group *${message.chat.formattedTitle}* (id: ${message.chat.id})`
       );
-
+      
       // Uncomment the below snippet to save the image
       // fs.writeFile(filename, mediaData, function (err) {
       //   if (err) {
@@ -33,10 +33,6 @@ function start(client: Client) {
       //   }
       //   console.log("The file was saved!");
       // });
-      const foo = {
-        imageURL: imageBase64,
-        sender: sender,
-      };
       axios
         .post("Enter URL here", {
           imageURL: imageBase64,
@@ -49,7 +45,12 @@ function start(client: Client) {
         .catch((error) => {
           console.error(error);
         });
-      console.log(JSON.stringify(foo));
+      // Uncomment below snippet to see the request body.
+      //   const foo = {
+      //     imageURL: imageBase64,
+      //     sender: sender,
+      //   };
+      // console.log(JSON.stringify(foo));
     }
   });
 
@@ -74,7 +75,6 @@ function start(client: Client) {
       .catch((error) => {
         console.error(error);
       });
-    console.log(JSON.stringify(newUser));
   });
 }
 
