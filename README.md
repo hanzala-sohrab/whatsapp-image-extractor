@@ -38,11 +38,9 @@ Extract images sent from all the users in a Whatsapp group
     ```
 8. For fetching the details of a user who recently joined a group, update line `64` with your chatId of choice in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/412aee4616ab4ec1ddf537cea758e056ec8d979a/client.ts#L64)
     ```ts
-    await client.sendImage(
-        "919XXXXXXXXX@c.us",
-        imageBase64,
-        filename,
-        `You just received this ${message.type} from *${message.sender.name}* with id ${message.sender.id}, at ${message.timestamp}, in group *${message.chat.formattedTitle}* (id: ${message.chat.id})`
+    await client.sendText(
+      "919XXXXXXXXX@c.us",
+      `who: ${participantAdded.who}\nwhat: ${participantAdded.action}\ngroup: ${participantAdded.chat}`
     );
     ```
 9. For fetching the details of a user who recently joined a group, update line `68` with a valid URL in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/412aee4616ab4ec1ddf537cea758e056ec8d979a/client.ts#L68) where the request must be sent
