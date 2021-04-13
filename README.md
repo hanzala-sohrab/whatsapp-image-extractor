@@ -23,7 +23,7 @@ Extract images sent from all the users in a Whatsapp group
     ```shell
     npm install -g typescript
     ```
-6. Update line `23` with your chatId of choice in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/c600f9a20be3ba233ffccc2eee6d5f359ac1bed3/client.ts#L23)
+6. For fetching the image uploaded by a user in a group, update line `23` with your chatId of choice in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/c600f9a20be3ba233ffccc2eee6d5f359ac1bed3/client.ts#L23)
     ```ts
     await client.sendImage(
         "919XXXXXXXXX@c.us",
@@ -32,17 +32,30 @@ Extract images sent from all the users in a Whatsapp group
         `You just received this ${message.type} from *${message.sender.name}* with id ${message.sender.id}, at ${message.timestamp}, in group *${message.chat.formattedTitle}* (id: ${message.chat.id})`
     );
     ```
-7. Update line `41` with a valid URL in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/c600f9a20be3ba233ffccc2eee6d5f359ac1bed3/client.ts#L41) where the request must be sent
+7. For fetching the image uploaded by a user in a group, update line `37` with a valid URL in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/412aee4616ab4ec1ddf537cea758e056ec8d979a/client.ts#L37) where the request must be sent
     ```ts
     post("Enter URL here", ...
     ```
-8. Run the TypeScript file
+8. For fetching the details of a user who recently joined a group, update line `64` with your chatId of choice in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/412aee4616ab4ec1ddf537cea758e056ec8d979a/client.ts#L64)
+    ```ts
+    await client.sendImage(
+        "919XXXXXXXXX@c.us",
+        imageBase64,
+        filename,
+        `You just received this ${message.type} from *${message.sender.name}* with id ${message.sender.id}, at ${message.timestamp}, in group *${message.chat.formattedTitle}* (id: ${message.chat.id})`
+    );
+    ```
+9. For fetching the details of a user who recently joined a group, update line `68` with a valid URL in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/412aee4616ab4ec1ddf537cea758e056ec8d979a/client.ts#L68) where the request must be sent
+    ```ts
+    post("Enter URL here", ...
+    ```
+10. Run the TypeScript file
     ```shell
     tsc client.ts
     ```
-9. Run the JavaScript file
+10. Run the JavaScript file
     ```shell
     node client.js
     ```
-10. Scan the QR-Code with your phone using Whatsapp to create a new session
+11. Scan the QR-Code with your phone using Whatsapp to create a new session
 
