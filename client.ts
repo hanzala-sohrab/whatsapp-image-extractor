@@ -55,18 +55,15 @@ function start(client: Client) {
   });
 
   client.onGlobalParticipantsChanged(async (participantAdded) => {
-    const newUser = {
-      who: participantAdded.who,
-      action: participantAdded.action,
-      group: participantAdded.chat,
-    };
     await client.sendText(
       "919XXXXXXXXX@c.us",
       `who: ${participantAdded.who}\nwhat: ${participantAdded.action}\ngroup: ${participantAdded.chat}`
     );
     axios
       .post("Enter URL here", {
-        newUser: newUser
+        who: participantAdded.who,
+        action: participantAdded.action,
+        group: participantAdded.chat,
       })
       .then((res) => {
         console.log(`statusCode: ${res.statusCode}`);
@@ -75,6 +72,12 @@ function start(client: Client) {
       .catch((error) => {
         console.error(error);
       });
+    // const newUser = {
+    //   who: participantAdded.who,
+    //   action: participantAdded.action,
+    //   group: participantAdded.chat,
+    // };
+    // console.log(JSON.stringify(newUser));
   });
 }
 
