@@ -36,14 +36,14 @@ Extract images sent from all the users in a Whatsapp group
     ```ts
     post("Enter URL here", ...
     ```
-8. For fetching the details of a user who recently joined a group, update line `59` with your chatId of choice in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/412aee4616ab4ec1ddf537cea758e056ec8d979a/client.ts#L59)
+8. For fetching the details of a user who recently joined a group, update line `59` with your chatId of choice in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/3c98411d1de45694ef08743f166e0c90be91f53f/client.ts#L59)
     ```ts
     await client.sendText(
       "919XXXXXXXXX@c.us",
       `who: ${participantAdded.who}\nwhat: ${participantAdded.action}\ngroup: ${participantAdded.chat}`
     );
     ```
-9. For fetching the details of a user who recently joined a group, update line `63` with a valid URL in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/412aee4616ab4ec1ddf537cea758e056ec8d979a/client.ts#L63) where the request must be sent
+9. For fetching the details of a user who recently joined a group, update line `63` with a valid URL in [client.ts](https://github.com/hanzala-sohrab/whatsapp-image-extractor/blob/3c98411d1de45694ef08743f166e0c90be91f53f/client.ts#L63) where the request must be sent
     ```ts
     post("Enter URL here", ...
     ```
