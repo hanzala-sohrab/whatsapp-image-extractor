@@ -16,6 +16,7 @@ function start(client: Client) {
         id: message.sender.id,
         name: message.sender.pushname,
         group: message.chat.formattedTitle,
+        groupId: message.chatId,
         time: message.timestamp,
         isPersonal: message.chatId.includes("c.us"),
       };
@@ -66,7 +67,7 @@ function start(client: Client) {
       .post("http://127.0.0.1:8080/api/new-user/", {
         who: participantAdded.who,
         action: participantAdded.action,
-        group: participantAdded.chat,
+        group: participantAdded.chat
       })
       .then((res) => {
         console.log(`statusCode: ${res.statusCode}`);
