@@ -47,7 +47,7 @@ function start(client) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    if (!(message.mimetype && !message.chatId.endsWith("@c.us"))) return [3 /*break*/, 3];
+                    if (!(message.mimetype && !message.chatId.endsWith("@c.us"))) return [3 /*break*/, 2];
                     filename = message.t + "-" + Math.floor(Math.random() * 1000) + "." + mime.extension(message.mimetype);
                     return [4 /*yield*/, wa_automate_1.decryptMedia(message)];
                 case 1:
@@ -60,9 +60,14 @@ function start(client) {
                         time: message.timestamp,
                         isPersonal: message.chatId.includes("c.us")
                     };
-                    return [4 /*yield*/, client.sendImage("919031738599@c.us", imageBase64, filename, "You just received this " + message.type + " from *" + message.sender.name + "* with id " + message.sender.id + ", at " + message.timestamp + ", in group *" + message.chat.formattedTitle + "* (id: " + message.chat.id + ")")];
-                case 2:
-                    _a.sent();
+                    /**
+                          await client.sendImage(
+                            "972533500951@c.us",
+                            imageBase64,
+                            filename,
+                            `You just received this ${message.type} from *${message.sender.name}* with id ${message.sender.id}, at ${message.timestamp}, in group *${message.chat.formattedTitle}* (id: ${message.chat.id})`
+                          );
+                    */
                     // Uncomment the below snippet to save the image
                     // fs.writeFile(filename, mediaData, function (err) {
                     //   if (err) {
@@ -71,7 +76,7 @@ function start(client) {
                     //   console.log("The file was saved!");
                     // });
                     axios
-                        .post("http://localhost:8000/", {
+                        .post("http://localhost:8080/api/predict/", {
                         imageURL: imageBase64,
                         sender: sender
                     })
@@ -81,31 +86,32 @@ function start(client) {
                     })["catch"](function (error) {
                         console.error(error);
                     });
-                    _a.label = 3;
-                case 3: return [2 /*return*/];
+                    _a.label = 2;
+                case 2: return [2 /*return*/];
             }
         });
     }); });
     client.onGlobalParticipantsChanged(function (participantAdded) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, client.sendText("919031738599@c.us", "who: " + participantAdded.who + "\nwhat: " + participantAdded.action + "\ngroup: " + participantAdded.chat)];
-                case 1:
-                    _a.sent();
-                    axios
-                        .post("http://localhost:8000/", {
-                        who: participantAdded.who,
-                        action: participantAdded.action,
-                        group: participantAdded.chat
-                    })
-                        .then(function (res) {
-                        console.log("statusCode: " + res.statusCode);
-                        console.log(res);
-                    })["catch"](function (error) {
-                        console.error(error);
-                    });
-                    return [2 /*return*/];
-            }
+            /**
+                await client.sendText(
+                  "972533500951@c.us",
+                  `who: ${participantAdded.who}\nwhat: ${participantAdded.action}\ngroup: ${participantAdded.chat}`
+                );
+            */
+            axios
+                .post("http://127.0.0.1:8080/api/new-user/", {
+                who: participantAdded.who,
+                action: participantAdded.action,
+                group: participantAdded.chat
+            })
+                .then(function (res) {
+                console.log("statusCode: " + res.statusCode);
+                console.log(res);
+            })["catch"](function (error) {
+                console.error(error);
+            });
+            return [2 /*return*/];
         });
     }); });
 }

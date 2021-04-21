@@ -106,3 +106,4 @@ dist
 session.data.json
 server.py
 .vscode/
+.idea/

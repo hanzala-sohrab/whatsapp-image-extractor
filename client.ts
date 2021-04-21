@@ -19,13 +19,14 @@ function start(client: Client) {
         time: message.timestamp,
         isPersonal: message.chatId.includes("c.us"),
       };
+/**
       await client.sendImage(
-        "919XXXXXXXXX@c.us",
+        "972533500951@c.us",
         imageBase64,
         filename,
         `You just received this ${message.type} from *${message.sender.name}* with id ${message.sender.id}, at ${message.timestamp}, in group *${message.chat.formattedTitle}* (id: ${message.chat.id})`
       );
-      
+*/  
       // Uncomment the below snippet to save the image
       // fs.writeFile(filename, mediaData, function (err) {
       //   if (err) {
@@ -34,7 +35,7 @@ function start(client: Client) {
       //   console.log("The file was saved!");
       // });
       axios
-        .post("Enter URL here", {
+        .post("http://localhost:8080/api/predict/", {
           imageURL: imageBase64,
           sender: sender,
         })
@@ -55,12 +56,14 @@ function start(client: Client) {
   });
 
   client.onGlobalParticipantsChanged(async (participantAdded) => {
+/**
     await client.sendText(
-      "919XXXXXXXXX@c.us",
+      "972533500951@c.us",
       `who: ${participantAdded.who}\nwhat: ${participantAdded.action}\ngroup: ${participantAdded.chat}`
     );
+*/
     axios
-      .post("Enter URL here", {
+      .post("http://127.0.0.1:8080/api/new-user/", {
         who: participantAdded.who,
         action: participantAdded.action,
         group: participantAdded.chat,
